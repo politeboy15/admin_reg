@@ -1,2 +1,2 @@
 # admin_reg
-Site wiht login sign up func
+Site with login sign up func

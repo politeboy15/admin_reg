@@ -5,16 +5,16 @@ from .models import *
 class FacultyForm(forms.ModelForm):
     class Meta:
         model = Faculty
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            "name":forms.TextInput(attrs={"class":"form-control"})
+            "name": forms.TextInput(attrs={'class': 'form-control'})
         }
 
 
 class KafedraForm(forms.ModelForm):
     class Meta:
         model = Kafedra
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            "name":forms.TextInput(attrs={"class":"form-control"})
+            "name": forms.TextInput(attrs={'class': 'form-control'})
         }

@@ -47,8 +47,8 @@ def home_page(request):
 @login_required_decorator
 def faculty_create(request):
     model=Faculty()
-    form=FacultyForm(request.POST or None, instance=model)
-    if request.POST:
+    form=FacultyForm(request.POST, instance=model)
+    if request.POST and form.is_valid():
         if form.is_valid():
             form.save()
             return redirect('faculty_list')

@@ -28,10 +28,51 @@ def login_page(request):
 
 @login_required_decorator
 def home_page(request):
-    return render(request, 'index.html')
+    faculties = services.get_faculties()
+    kafedras = services.get_kafedras()
+    ctx={
+        'counts':{
+            'faculties': len(faculties),
+            'kafedras': len(kafedras),
+        }
+    }
+    return render(request, 'index.html', ctx)
 
 
-class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login_page')
-    template_name = 'signup.html'
+
+@login_required_decorator
+def faculty_create(request):
+    model=Faculty()
+    form=FacultyForm(request.POST or None, instance=model)
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('faculty_list')
+    ctx={
+        "form":form,
+    }
+    return render(request, 'faculty/form.html', ctx)
+
+
+@login_required_decorator
+def faculty_edit(request, pk):
+    model=Faculty.objects.get(pk=pk)
+    form=FacultyForm(request.POST or None, instance=model)
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('faculty_list')
+    ctx={
+        "model":model,
+        "form":form,
+    }
+    return render(request, 'faculty/form.html', ctx)
+
+
+@login_required_decorator
+def faculty_list(request):
+    faculties = services.get_faculties()
+    ctx = {
+        "faculties": faculties,
+    }
+    return render(request, 'faculty/list.html', ctx)

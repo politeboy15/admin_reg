@@ -23,12 +23,20 @@
                                         <i class="zmdi zmdi-account-o"></i>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ faculty_count }}</h2>
+                                        <h2>{{ counts.faculties|intcomma }}</h2>
                                         <span>faculty</span>
                                     </div>
                                 </div>
                                 <div class="overview-chart">
-                                    <canvas id="widgetChart1"></canvas>
+                                    <div class="overview-chart">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div style=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div style=""></div>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

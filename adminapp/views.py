@@ -22,3 +22,16 @@ def login_page(request):
         user = authenticate(request, password=password, username=username)
         if user is not None:
             login(request, user)
+            return redirect("home_page")
+    return render(request, 'login.html')
+
+
+@login_required_decorator
+def home_page(request):
+    return render(request, 'index.html')
+
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login_page')
+    template_name = 'signup.html'

@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from .forms import *
+from .models import *
+import services
+
 
 def login_required_decorator(func):
     return login_required(func, login_url="login_page")
